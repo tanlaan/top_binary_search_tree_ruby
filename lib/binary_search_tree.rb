@@ -124,6 +124,15 @@ class Tree
         return [] if current_node.nil?
         [ current_node.data ] + preorder(current_node.left) + preorder(current_node.right)
     end
+
+    def postorder(current_node = @root)
+        # Return an array of the postorder ordered binary tree values
+        # (Left, Right, Data)
+
+        # Base case
+        return [] if current_node.nil?
+        postorder(current_node.left) + postorder(current_node.right) + [ current_node.data ]
+    end
 end
 
 class Node
