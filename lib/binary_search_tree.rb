@@ -111,9 +111,18 @@ class Tree
         # Return an array of the inorder ordered binary tree values
         # (Left, Root, Right)
 
-        #Base case
+        # Base case
         return [] if current_node.nil?
         inorder(current_node.left)  + [ current_node.data ] + inorder(current_node.right)
+    end
+
+    def preorder(current_node = @root)
+        # Return an array of the preorder ordered binary tree values
+        # (Root, Left, Right)
+
+        # Base case
+        return [] if current_node.nil?
+        [ current_node.data ] + preorder(current_node.left) + preorder(current_node.right)
     end
 end
 
