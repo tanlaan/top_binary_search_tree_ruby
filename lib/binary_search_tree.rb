@@ -7,7 +7,6 @@ class Tree
     
     def build_tree(values)
         # Recursivly return a balanced binary tree
-        p values
 
         # Base cases
         return nil if values.nil? || values.length == 0
@@ -90,6 +89,22 @@ class Tree
             return nil if current_node == nil
         end
         current_node
+    end
+
+    def level_order
+        # Return an array of the level ordered binary tree values
+        node_queue = [@root]
+        level_order = []
+        # Populate level_order with value
+        # If left child add to queue
+        # If right child add to queue
+        while node_queue.length > 0
+            current_node = node_queue.slice!(0)
+            level_order.append(current_node.data)
+            node_queue.append(current_node.left) unless current_node.left.nil?
+            node_queue.append(current_node.right) unless current_node.right.nil?
+        end
+        level_order
     end
 end
 
