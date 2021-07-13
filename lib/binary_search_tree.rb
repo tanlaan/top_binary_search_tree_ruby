@@ -42,6 +42,45 @@ class Tree
         end
         
     end
+
+    def delete(value)
+        last_node = nil
+        current_node = @root
+        from_left = false
+        # Search for node to delete
+        until current_node.data == value
+            last_node = current_node
+            if value < current_node.data
+                current_node = current_node.left
+                from_left = true
+            else
+                current_node = current_node.right
+                from_left = false
+            end
+        end
+
+        # Case leaf, remove reference in last_node
+        if current_node.left.nil? && current_node.right.nil?
+            from_left ? last_node.left = nil : last_node.right = nil
+        # Case single child, replace reference in last_node
+        elsif current_node.left.nil?  
+            from_left ? last_node.left = current_node.right : last_node.right = current_node.right
+        elsif current_node.right.nil? 
+            from_left ? last_node.left = current_node.left : last_node.right = current_node.left
+        # Case multiple child, replace reference in last_node with smallest right tree value
+        else
+            secondary_last_node = current_node
+            secondary_current_node = current_node.right
+            until secondary_current_node.left.nil?
+                secondary_last_node = secondary_current_node
+                secondary_current_node = secondary_current_node.left
+            end
+            secondary_last_node.left = nil
+            secondary_current_node.left = current_node.left
+            secondary_current_node.right = current_node.right
+            from_left ? last_node.left = secondary_current_node : last_node.right = secondary_current_node
+        end
+    end
 end
 
 class Node
