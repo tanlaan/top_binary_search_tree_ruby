@@ -106,6 +106,15 @@ class Tree
         end
         level_order
     end
+
+    def inorder(current_node = @root)
+        # Return an array of the inorder ordered binary tree values
+        # (Left, Root, Right)
+
+        #Base case
+        return [] if current_node.nil?
+        inorder(current_node.left)  + [ current_node.data ] + inorder(current_node.right)
+    end
 end
 
 class Node
