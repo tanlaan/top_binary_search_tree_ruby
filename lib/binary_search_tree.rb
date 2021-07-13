@@ -81,6 +81,16 @@ class Tree
             from_left ? last_node.left = secondary_current_node : last_node.right = secondary_current_node
         end
     end
+
+    def find(value)
+        current_node = @root
+        until current_node.data == value
+            value < current_node.data ? current_node = current_node.left : current_node = current_node.right
+            # Value not found
+            return nil if current_node == nil
+        end
+        current_node
+    end
 end
 
 class Node
