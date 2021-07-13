@@ -109,7 +109,7 @@ class Tree
 
     def inorder(current_node = @root)
         # Return an array of the inorder ordered binary tree values
-        # (Left, Root, Right)
+        # (Left, Data, Right)
 
         # Base case
         return [] if current_node.nil?
@@ -118,7 +118,7 @@ class Tree
 
     def preorder(current_node = @root)
         # Return an array of the preorder ordered binary tree values
-        # (Root, Left, Right)
+        # (Data, Left, Right)
 
         # Base case
         return [] if current_node.nil?
