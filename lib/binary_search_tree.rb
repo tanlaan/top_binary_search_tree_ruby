@@ -24,22 +24,19 @@ class Tree
         )
     end
 
-    def insert(value)
-        # TODO: Remove assumption of no duplicate values
+    def insert(value, current_node = @root)
+        # Base case, either the value was in the list or we added it
+        return if current_node.data == value
 
-        current_node = @root
-        loop do
-            if current_node.data > value && current_node.left.nil?
-                current_node.left = Node.new(value)
-                break
-            elsif current_node.data < value && current_node.right.nil?
-                curren_node.right = Node.new(value)
-                break
-            end
-            current_node = current_node.left if current_node.data > value
-            current_node = current_node.right if current_node.data < value
-        end
-        
+        # Insert left
+        current_node.left = Node.new(value) if value < current_node.data && current_node.left.nil?
+        # Insert right
+        current_node.right = Node.new(value) if value > current_node.data && current_node.right.nil?
+
+        # Go left
+        insert(value, current_node.left) if value < current_node.data
+        # Go right
+        insert(value, current_node.right) if value > current_node.data
     end
 
     def delete(value)
