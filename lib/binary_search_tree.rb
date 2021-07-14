@@ -133,6 +133,17 @@ class Tree
         return [] if current_node.nil?
         postorder(current_node.left) + postorder(current_node.right) + [ current_node.data ]
     end
+
+    def height(current_node = @root, current_height = 0)
+        # Return the longest path from the given node to a leaf
+        return 0 if current_node.nil?
+
+        comparisons = []
+        comparisons += [current_height]
+        comparisons += [height(current_node.left, current_height + 1)] 
+        comparisons += [height(current_node.right, current_height + 1)] 
+        comparisons.max
+    end
 end
 
 class Node
