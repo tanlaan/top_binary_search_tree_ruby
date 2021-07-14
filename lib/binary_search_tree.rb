@@ -147,6 +147,10 @@ class Tree
     def depth(current_node)
         height(@root) - height(current_node)
     end
+
+    def balanced?
+        (height(@root.left) - height(@root.right)).abs <= 1
+    end
 end
 
 class Node
