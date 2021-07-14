@@ -138,11 +138,10 @@ class Tree
         # Return the longest path from the given node to a leaf
         return 0 if current_node.nil?
 
-        comparisons = []
-        comparisons += [current_height]
-        comparisons += [height(current_node.left, current_height + 1)] 
-        comparisons += [height(current_node.right, current_height + 1)] 
-        comparisons.max
+        [ current_height, 
+          height(current_node.left, current_height + 1),
+          height(current_node.right, current_height + 1)
+        ].max
     end
 end
 
