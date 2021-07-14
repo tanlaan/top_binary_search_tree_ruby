@@ -151,6 +151,10 @@ class Tree
     def balanced?
         (height(@root.left) - height(@root.right)).abs <= 1
     end
+
+    def rebalance
+        @root = build_tree(self.level_order)
+    end
 end
 
 class Node
