@@ -12,8 +12,9 @@ class Tree
         return nil if values.nil? || values.length == 0
         return Node.new(values[0]) if values.length == 1
         
-        # Sort our values...
-        values.sort!
+        # Sort our values, and remove duplicates...
+        p values
+        values.sort!.uniq!
 
         # Create a node for our middle value
         halfway = values.length / 2
