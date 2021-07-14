@@ -143,6 +143,10 @@ class Tree
           height(current_node.right, current_height + 1)
         ].max
     end
+
+    def depth(current_node)
+        height(@root) - height(current_node)
+    end
 end
 
 class Node
